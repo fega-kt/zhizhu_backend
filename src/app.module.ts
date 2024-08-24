@@ -27,6 +27,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { AllConfigType } from './config/config.type';
 import { SessionModule } from './session/session.module';
 import { MailerModule } from './mailer/mailer.module';
+import { WinstonModule } from 'nest-winston';
 
 const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
   useClass: TypeOrmConfigService,
@@ -36,6 +37,7 @@ const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
 });
 
 import { menusModule } from './menus/menus.module';
+import { winstonConfig } from './logger';
 
 @Module({
   imports: [
@@ -79,6 +81,7 @@ import { menusModule } from './menus/menus.module';
       imports: [ConfigModule],
       inject: [ConfigService],
     }),
+    WinstonModule.forRoot(winstonConfig),
     UsersModule,
     FilesModule,
     AuthModule,
