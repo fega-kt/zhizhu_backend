@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { FilesModule } from './files/files.module';
 import { AuthModule } from './auth/auth.module';
@@ -27,7 +27,6 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { AllConfigType } from './config/config.type';
 import { SessionModule } from './session/session.module';
 import { MailerModule } from './mailer/mailer.module';
-import { WinstonModule } from 'nest-winston';
 
 const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
   useClass: TypeOrmConfigService,
@@ -37,7 +36,14 @@ const infrastructureDatabaseModule = TypeOrmModule.forRootAsync({
 });
 
 import { menusModule } from './menus/menus.module';
-import { winstonConfig } from './logger';
+import { AppLoggerMiddleware } from './middlewares/log.middleware';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import {
+  HttpErrorInterceptor,
+  TimeoutInterceptor,
+  TransformInterceptor,
+} from './interceptors';
+import { ExceptionsFilter } from './filters';
 
 @Module({
   imports: [
@@ -81,7 +87,6 @@ import { winstonConfig } from './logger';
       imports: [ConfigModule],
       inject: [ConfigService],
     }),
-    WinstonModule.forRoot(winstonConfig),
     UsersModule,
     FilesModule,
     AuthModule,
@@ -94,5 +99,27 @@ import { winstonConfig } from './logger';
     MailerModule,
     HomeModule,
   ],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: ExceptionsFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TimeoutInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: HttpErrorInterceptor,
+    },
+  ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer): void {
+    consumer.apply(AppLoggerMiddleware).forRoutes('*');
+  }
+}

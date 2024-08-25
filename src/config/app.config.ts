@@ -47,6 +47,13 @@ class EnvironmentVariablesValidator {
   @IsString()
   @IsOptional()
   APP_HEADER_LANGUAGE: string;
+
+  @IsString()
+  DIRNAME_LOGGER: string;
+
+  @IsString()
+  @IsOptional()
+  FILENAME_LOGGER: string;
 }
 
 export default registerAs<AppConfig>('app', () => {
@@ -66,5 +73,7 @@ export default registerAs<AppConfig>('app', () => {
     apiPrefix: process.env.API_PREFIX || 'api',
     fallbackLanguage: process.env.APP_FALLBACK_LANGUAGE || 'en',
     headerLanguage: process.env.APP_HEADER_LANGUAGE || 'x-custom-lang',
+    filenameLogger: process.env.FILENAME_LOGGER || 'combined-%DATE%.log',
+    dirnameLogger: process.env.DIRNAME_LOGGER || 'C://logger',
   };
 });

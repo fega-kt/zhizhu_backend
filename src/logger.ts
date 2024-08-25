@@ -5,6 +5,7 @@ import { WinstonModule } from 'nest-winston';
 
 const fileRotateTransport = new DailyRotateFile({
   filename: 'combined-%DATE%.log',
+  dirname: 'C://logger',
   datePattern: 'YYYY-MM-DD',
   maxFiles: '14d',
   zippedArchive: true,
@@ -29,13 +30,8 @@ const transports = [
   fileRotateTransport,
 ];
 
-export const winstonConfig = winston.createLogger({
-  levels: winston.config.npm.levels, // Ensure debug level is included
+export const winstonConfig = WinstonModule.createLogger({
+  levels: winston.config.npm.levels,
   level: 'silly',
-  transports,
-});
-
-export const winstonConfigMain = WinstonModule.createLogger({
-  levels: winston.config.npm.levels, // Ensure correct level mapping
   transports,
 });

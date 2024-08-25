@@ -65,6 +65,9 @@ importers:
       handlebars:
         specifier: 4.7.8
         version: 4.7.8
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       ms:
         specifier: 2.1.3
         version: 2.1.3
@@ -98,6 +101,9 @@ importers:
       reflect-metadata:
         specifier: 0.2.2
         version: 0.2.2
+      request-ip:
+        specifier: ^3.3.0
+        version: 3.3.0
       rimraf:
         specifier: 6.0.1
         version: 6.0.1
@@ -116,6 +122,9 @@ importers:
       typeorm:
         specifier: 0.3.20
         version: 0.3.20(ioredis@5.4.1)(pg@8.12.0)(ts-node@10.9.2(@swc/core@1.7.10)(@types/node@20.14.13)(typescript@5.5.4))
+      uuid:
+        specifier: ^10.0.0
+        version: 10.0.0
       winston:
         specifier: ^3.14.2
         version: 3.14.2
@@ -180,6 +189,9 @@ importers:
       '@types/twitter':
         specifier: 1.7.4
         version: 1.7.4
+      '@types/uuid':
+        specifier: ^10.0.0
+        version: 10.0.0
       '@typescript-eslint/eslint-plugin':
         specifier: 8.1.0
         version: 8.1.0(@typescript-eslint/parser@8.1.0(eslint@8.57.0)(typescript@5.5.4))(eslint@8.57.0)(typescript@5.5.4)
@@ -1573,6 +1585,9 @@ packages:
 
   '@types/twitter@1.7.4':
     resolution: {integrity: sha512-ueg2F6M7xFX4rB7kA6cqSn8CY8mIuxC8O4JT8O4yBhOiR4cPRCGHJG7X8L5cTrdU0Uk3Q8vBo/YiBYmwJPZbOw==}
+
+  '@types/uuid@10.0.0':
+    resolution: {integrity: sha512-7gqG38EyHgyP1S+7+xomFtL+ZNHcKv6DwNaCZmJmo1vgMugyF3TCnXVg4t1uk89mLNwnLtnY3TpOpCOyp1/xHQ==}
 
   '@types/validator@13.12.0':
     resolution: {integrity: sha512-nH45Lk7oPIJ1RVOF6JgFI6Dy0QpHEzq4QecZhvguxYPDwT8c93prCMqAtiIttm39voZ+DDR+qkNnMpJmMBRqag==}
@@ -4555,6 +4570,9 @@ packages:
     resolution: {integrity: sha512-PV0dzCYDNfRi1jCDbJzpW7jNNDRuCOG/jI5ctQcGKt/clZD+YcPS3yIlWuTJMmESC8aevCFmWJy5wjAFgNqN6w==}
     engines: {node: '>=0.10'}
 
+  request-ip@3.3.0:
+    resolution: {integrity: sha512-cA6Xh6e0fDBBBwH77SLJaJPBmD3nWVAcF9/XAcsrIHdjhFzFiB5aNQFytdjCGPezU3ROwrR11IddKAM08vohxA==}
+
   request@2.88.2:
     resolution: {integrity: sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==}
     engines: {node: '>= 6'}
@@ -5296,6 +5314,10 @@ packages:
   utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
+
+  uuid@10.0.0:
+    resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
+    hasBin: true
 
   uuid@3.4.0:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
@@ -7540,6 +7562,8 @@ snapshots:
     dependencies:
       '@types/node': 20.14.13
       '@types/request': 2.48.12
+
+  '@types/uuid@10.0.0': {}
 
   '@types/validator@13.12.0': {}
 
@@ -10960,6 +10984,8 @@ snapshots:
 
   repeat-string@1.6.1: {}
 
+  request-ip@3.3.0: {}
+
   request@2.88.2:
     dependencies:
       aws-sign2: 0.7.0
@@ -11655,6 +11681,8 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   utils-merge@1.0.1: {}
+
+  uuid@10.0.0: {}
 
   uuid@3.4.0: {}
 

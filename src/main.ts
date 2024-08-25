@@ -12,15 +12,23 @@ import { AppModule } from './app.module';
 import validationOptions from './utils/validation-options';
 import { AllConfigType } from './config/config.type';
 import { ResolvePromisesInterceptor } from './utils/serializer.interceptor';
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
-import { winstonConfigMain } from './logger';
+import { winstonConfig } from './logger';
+
+process.on('uncaughtException', (err) => {
+  winstonConfig.error(err);
+});
+
+process.on('unhandledRejection', (err) => {
+  winstonConfig.error(err);
+});
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: true,
-    logger: winstonConfigMain,
+    logger: winstonConfig,
   });
-  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
+
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   const configService = app.get(ConfigService<AllConfigType>);
 
